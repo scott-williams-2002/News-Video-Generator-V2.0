@@ -5,8 +5,7 @@ from pinecone import Pinecone, ServerlessSpec
 import time
 
 
-
-
+#class that makes a database or connects to it, adds vectors of data, and queries the database
 class Vector_DB:
     def __init__(self):
         load_dotenv()
