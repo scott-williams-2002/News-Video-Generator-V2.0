@@ -4,7 +4,6 @@ import os
 from pinecone import Pinecone, ServerlessSpec
 import time
 
-from web_scraping.embed import embed_string
 
 
 

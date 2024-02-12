@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests, json, lxml
+import newspaper
 
 #given a url, a list of text chunks are returned
 def get_article_text(URL):
@@ -33,4 +34,14 @@ def get_article_images(url):
     #if error, return empty list
     except:
         return []
+
+def get_article_title(url):
+    try:
+        article = newspaper.Article(url)
+        return article.source_url.split('/')[2] #returns www.forbes.com for example from url
+    except:
+        return "Anonymous Source" # says anonymous source if can't find the publisher
+    
+
+
 
