@@ -35,6 +35,7 @@ def get_article_images(url):
     except:
         return []
 
+#uses newspaper library to get the article's publisher
 def get_article_title(url):
     try:
         article = newspaper.Article(url)
@@ -43,5 +44,4 @@ def get_article_title(url):
         return "Anonymous Source" # says anonymous source if can't find the publisher
     
 
-
-
+print(get_article_images("https://www.wsj.com/world/middle-east/israel-rescues-two-hostages-held-by-hamas-in-gaza-ec5ca99a?mod=hp_lead_pos1"))
