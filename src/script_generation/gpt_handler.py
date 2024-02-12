@@ -1,4 +1,4 @@
-from GPT_Wrapper import GPT_Wrapper
+from script_generation.GPT_Wrapper import GPT_Wrapper
 
 
 def generate_hook_statement(text_chunk_list, research_question):

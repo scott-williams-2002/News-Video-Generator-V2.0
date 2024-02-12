@@ -36,12 +36,10 @@ def get_article_images(url):
         return []
 
 #uses newspaper library to get the article's publisher
-def get_article_title(url):
+def get_article_publisher(url):
     try:
         article = newspaper.Article(url)
         return article.source_url.split('/')[2] #returns www.forbes.com for example from url
     except:
         return "Anonymous Source" # says anonymous source if can't find the publisher
     
-
-print(get_article_images("https://www.wsj.com/world/middle-east/israel-rescues-two-hostages-held-by-hamas-in-gaza-ec5ca99a?mod=hp_lead_pos1"))

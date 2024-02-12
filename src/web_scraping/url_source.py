@@ -4,6 +4,8 @@ import requests, json, lxml
 
 #This function returns a list of urls given a query
 def get_urls_from_google(query):
+  #alert user
+  print(f"Gathering Articles for the query: {query}")
   page_limit = 10          
   page_num = 0
   data = []
