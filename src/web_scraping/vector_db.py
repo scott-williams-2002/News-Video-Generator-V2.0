@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from pinecone import Pinecone, ServerlessSpec
 import time
+import uuid
 
 
 #class that makes a database or connects to it, adds vectors of data, and queries the database
@@ -39,18 +40,23 @@ class Vector_DB:
         self.index = self.pc.Index(self.index_name)
         time.sleep(1)
 
-    def populate(self, value, id, article_text, article_source, article_url):
+    def populate(self, vector_embedding, article_text, article_source, article_url):
         #formats and inserts values into the vector db
         try:
-            self.index.upsert(vectors=[{"id": str(id), "values": value, "metadata": {"text":str(article_text), "source": str(article_source), "url": str(article_url)}}])
+            self.index.upsert(vectors=[{"id": str(uuid.uuid4()), "values": vector_embedding, "metadata": {"text":str(article_text), "source": str(article_source), "url": str(article_url)}}])
         except:
             print(f"Alert ->>>>>> There was an error upserting the following data: {article_text}")
 
-    #given a passed in vector embedding, return the k nearest vectors
+    #given a passed in vector embedding, return the k nearest vectors. Returns a list of dictionaries with text and a url
     def make_query(self, query_vector, k):
         try:
             #returns a json of results if possible
             res = self.index.query(vector= query_vector, top_k=k, include_metadata=True)
+            #extract text and urls as dictionary
+            filtered_info = []
+            for each in res['matches']:
+                filtered_info.append({'text':each['metadata']['text'], 'url':each['metadata']['url'], 'source':each['metadata']['source']})
+            
             return res
         except:
             print(f"Alert ->>>>>> There was an error when making a query with a k of {k}")
