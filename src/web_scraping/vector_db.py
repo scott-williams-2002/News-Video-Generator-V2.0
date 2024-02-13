@@ -53,11 +53,14 @@ class Vector_DB:
             #returns a json of results if possible
             res = self.index.query(vector= query_vector, top_k=k, include_metadata=True)
             #extract text and urls as dictionary
-            filtered_info = []
+            filtered_info = {'text':[], 'url':[], 'source':[]}
             for each in res['matches']:
-                filtered_info.append({'text':each['metadata']['text'], 'url':each['metadata']['url'], 'source':each['metadata']['source']})
+                #formats as dictionary
+                filtered_info['text'].append(each['metadata']['text'])
+                filtered_info['url'].append(each['metadata']['url'])
+                filtered_info['source'].append(each['metadata']['source'])            
             
-            return res
+            return filtered_info #a dictionary containing 3 lists
         except:
             print(f"Alert ->>>>>> There was an error when making a query with a k of {k}")
             return {"nul":"nul"} #returns a json of nul values if there is an issues
