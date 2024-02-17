@@ -41,7 +41,7 @@ def get_article_images(url):
         return []
 
 #uses newspaper library to get the article's publisher
-def get_article_title(url):
+def get_article_publiser(url):
     try:
         article = newspaper.Article(url)
         return article.source_url.split('/')[2] #returns www.forbes.com for example from url

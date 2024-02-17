@@ -54,11 +54,11 @@ class Vector_DB:
             res = self.index.query(vector= query_vector, top_k=k, include_metadata=True)
             #extract text and urls as dictionary
             filtered_info = {'text':[], 'url':[], 'source':[]}
-            for each in res['matches']:
+            for row in res['matches']:
                 #formats as dictionary
-                filtered_info['text'].append(each['metadata']['text'])
-                filtered_info['url'].append(each['metadata']['url'])
-                filtered_info['source'].append(each['metadata']['source'])            
+                filtered_info['text'].append(row['metadata']['text'])
+                filtered_info['url'].append(row['metadata']['url'])
+                filtered_info['source'].append(row['metadata']['source'])            
             
             return filtered_info #a dictionary containing 3 lists
         except:
