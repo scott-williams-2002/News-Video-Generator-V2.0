@@ -39,7 +39,7 @@ def run_browser_bot(driver, min_delay, max_delay, max_images):
 
 
 
-def get_images_from_google(search_query):
+def get_images_from_google(search_query, n_imgs):
 
     # Create a Chrome driver
     options = Options()
@@ -51,6 +51,6 @@ def get_images_from_google(search_query):
     driver.get(search_url)
 
     # Perform image scraping and downloading
-    urls = run_browser_bot(driver, 2,10, 5)  # between 2 and 10 second delay between grabbing 5 images
+    urls = run_browser_bot(driver, 2,10, n_imgs)  # between 2 and 10 second delay between grabbing n # of images
     return urls
 

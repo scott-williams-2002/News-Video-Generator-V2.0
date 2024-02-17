@@ -18,10 +18,14 @@ class GPT_Wrapper:
 
     # given a prompt message and temp, return all json output from model
     def model_call_json(self, prompt, temp):
-        response = self.client.chat.completions.create(
+        try:
+            response = self.client.chat.completions.create(
             model="gpt-3.5-turbo-1106",
             response_format={ "type": "json_object" },
             temperature = temp,
             messages=prompt
-        )
-        return json.loads((response.choices[0].message.content))
+            )
+            return json.loads((response.choices[0].message.content))
+        except:
+            print(f"error with this prompt:{prompt}")
+            return " "
