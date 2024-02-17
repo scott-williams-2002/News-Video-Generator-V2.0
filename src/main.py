@@ -68,7 +68,7 @@ def main():
     #output has a dictionary of lists - one for text chunks, one for urls, and one for publisher
     output_data_structure = db.make_query(embed_string("why is iran a threat"), 3)
     print("query to DB complete")
-    script_list = generate_article(output_data_structure['text'], "news about iran and how it affects shipping in the ocean")
+    script_list = generate_article(output_data_structure['text'], "news about iran and how it affects shipping in the oceanls")
     print("finished script")
     cleaned_output = concat_data(output_data_structure, script_list) #combines both outputs into one standard data structure
     print("cleaned the data")
