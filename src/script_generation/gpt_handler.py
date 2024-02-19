@@ -31,7 +31,7 @@ def generate_article(text_chunk_list, research_question):
         {"role": "user", "content": f"Here is the topic of the news today and the task: {research_question}. Write one sentence which summarize this chunk of text from a fellow news writer: {text_chunk_list[i]}. The summary you make will come after these sentences that you previously wrote: {previous_chunk}. Only write what should come after what you previously wrote and NEVER repeat the same pieces of information."}
         ]
         #append output of model to list
-        script_chunks.append(gpt.model_call_text(prompt=prompt, temp=0.4))
+        script_chunks.append(gpt.model_call_text(prompt=prompt, temp=0.5))
 
     #retuns the hook added in front of the rest of the script's chunks
     return [script_hook] + script_chunks 
@@ -40,10 +40,10 @@ def generate_article(text_chunk_list, research_question):
 def suggest_images(script_chunk):
     gpt = GPT_Wrapper()
     prompt = [
-    {"role": "system", "content": "You are a google search pro editing a video. You come up with the best possible google search to find an image to put in your video, if that image is related to a piece of text from the video's script. The google search should be no more than 3 words long and it should include a propper noun. Look for people, specific things, places, or groups and include those in the query. For example, if the text mentioned The George Washington Bridge, the query you make will be George Washington Bridge."},
-    {"role": "user", "content": f"Here is the chunk from the video script: {script_chunk}. Prepare a google search query for an image that would convey the meaining of the text from the video script. The query should be no more than 3 words. Do not include quotation marks"}
+    {"role": "system", "content": "You are a google search pro editing a video. You come up with the best possible google search to find an image to put in your video, if that image is related to a piece of text from the video's script. Use exact words from the piece of text. The google search should be no more than 6 words long and it should include a propper noun. Look for people, specific things, places, or groups and include those in the query. For example, if the text mentioned The George Washington Bridge, the query you make will be George Washington Bridge."},
+    {"role": "user", "content": f"Here is the chunk from the video script: {script_chunk}. Prepare a google search query for an image that would convey the meaining of the text from the video script. The query should be no more than 6 words. Do not include quotation marks"}
     ]
-    response = gpt.model_call_text(prompt=prompt, temp=0.2)
+    response = gpt.model_call_text(prompt=prompt, temp=0.1)
     return str(response)
 
 

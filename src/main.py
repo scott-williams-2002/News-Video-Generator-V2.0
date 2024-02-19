@@ -7,6 +7,7 @@ from web_scraping.vector_db import *
 from user_interface.user_input import *
 from browser_bot.bot import *
 from text_to_speech.tts_handler import generate_speech
+from web_scraping.download_image import *
 
 def load_all_data(db,queries):
     for query in queries:
@@ -68,21 +69,24 @@ def main():
     #output has a dictionary of lists - one for text chunks, one for urls, and one for publisher
     output_data_structure = db.make_query(embed_string("why is iran a threat"), 3)
     print("query to DB complete")
-    script_list = generate_article(output_data_structure['text'], "news about iran and how it affects shipping in the oceanls")
+    script_list = generate_article(output_data_structure['text'], "global conflict and destabilization")
     print("finished script")
     cleaned_output = concat_data(output_data_structure, script_list) #combines both outputs into one standard data structure
     print("cleaned the data")
-    cleaned_output = add_image_urls(cleaned_output,1) # 1 image per chunk
+    cleaned_output = add_image_urls(cleaned_output,2) # 1 image per chunk
 
     #adding speech files to output directory and saving their location in cleaned_output
     cleaned_output = generate_speech(cleaned_output)
+    cleaned_output = validate_and_download_images(cleaned_output)
 
 
     
     
     
 
-    print(cleaned_output)
+    for sub_dict in cleaned_output:
+        print(sub_dict)
+        print("\n")
 
     
 

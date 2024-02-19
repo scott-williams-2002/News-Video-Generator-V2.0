@@ -20,7 +20,7 @@ class GPT_Wrapper:
     def model_call_json(self, prompt, temp):
         try:
             response = self.client.chat.completions.create(
-            model="gpt-3.5-turbo-1106",
+            model="gpt-4-1106-preview",
             response_format={ "type": "json_object" },
             temperature = temp,
             messages=prompt
