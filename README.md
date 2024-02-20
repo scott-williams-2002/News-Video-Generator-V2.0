@@ -11,3 +11,7 @@ TODO:
 
 
 Get sentence by sentence text chunks
+
+
+
+#For Windows Users, install ImageMagick if not already installed to prevent issues with text

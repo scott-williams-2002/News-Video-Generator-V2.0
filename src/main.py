@@ -8,6 +8,8 @@ from user_interface.user_input import *
 from browser_bot.bot import *
 from text_to_speech.tts_handler import generate_speech
 from web_scraping.download_image import *
+from video_editor.video_handler import load_video_data_and_create
+
 
 def load_all_data(db,queries):
     for query in queries:
@@ -43,9 +45,16 @@ def concat_data(db_data, script):
 
 #takes in a list of dictionaries corresponding to chunks of script and appends image urls to each chunk
 def add_image_urls(script_data, n_images):
+    previous_queries = [] #store previous suggestions
     for dict in script_data:
-        
-        search_query = suggest_images(dict['script_chunk'])
+        # avoids getting the same search query for an image
+        if len(previous_queries) == 0:
+            search_query = suggest_image(dict['script_chunk'], "N/A")
+        else:
+            search_query = suggest_image(dict['script_chunk'], str(previous_queries)) #if there are previous queries pass them in to avoid repetition
+
+        previous_queries.append(search_query)
+        #adds previous suggestions
         print(f"Searching for images of: {search_query}")
         print("Opening Chrome DO NOT PRESS BUTTONS OR MOVE MOUSE PLEASE <<<-------------")
         time.sleep(random.randrange(5,10))
@@ -73,11 +82,17 @@ def main():
     print("finished script")
     cleaned_output = concat_data(output_data_structure, script_list) #combines both outputs into one standard data structure
     print("cleaned the data")
-    cleaned_output = add_image_urls(cleaned_output,2) # 1 image per chunk
+    cleaned_output = add_image_urls(cleaned_output,4) # 4 images per chunk
 
     #adding speech files to output directory and saving their location in cleaned_output
     cleaned_output = generate_speech(cleaned_output)
     cleaned_output = validate_and_download_images(cleaned_output)
+
+    print("Creating Video. Warning This will Take A While...")
+    create_vid_input = str(input("Proceed? (Yy/Nn): "))
+    #now create video
+    load_video_data_and_create(cleaned_output, "out.mp4")
+  
 
 
     

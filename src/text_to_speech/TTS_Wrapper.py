@@ -8,7 +8,7 @@ class TTS_Wrapper:
         self.client = texttospeech.TextToSpeechClient()
         
     #defaults to certain voice, pitch, and tone but can be changed when called
-    def set_audio_config(self, audio_encoding=texttospeech.AudioEncoding.MP3, pitch = -4.0, speaking_rate=1, effects_profile_id = ["handset-class-device"]):
+    def set_audio_config(self, audio_encoding=texttospeech.AudioEncoding.MP3, pitch = -4.0, speaking_rate=1.2, effects_profile_id = ["handset-class-device"]):
         self.audio_encoding = texttospeech.AudioConfig(audio_encoding=audio_encoding, pitch = pitch, speaking_rate=speaking_rate, effects_profile_id = effects_profile_id)
 
     def set_voice(self, language_code="en-AU", voice_name="en-AU-Polyglot-1"):
