@@ -39,7 +39,7 @@ def load_video_data_and_create(video_data, background_video_file):
     for segment in video_data:
         # add audio file location to video
         audio_file_loc = segment['audio']
-        vid.add_audio(audio_file_location=audio_file_loc)
+        vid.add_audio(audio_file_location=audio_file_loc, total_audio=audio_added_len)
         audio_length = audio_len(audio_file_loc) #audio file time
 
         images = segment['image_location']

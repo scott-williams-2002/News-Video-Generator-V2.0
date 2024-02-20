@@ -30,8 +30,8 @@ class Video_Editor:
         self.video_elements.append(txt)
 
     # adds an audio file to list of audio
-    def add_audio(self, audio_file_location):
-        audioclip = mp.AudioFileClip(audio_file_location)
+    def add_audio(self, audio_file_location, total_audio):
+        audioclip = mp.AudioFileClip(audio_file_location).set_start(total_audio)
         self.audio_elements.append(audioclip)
         
     # concatenates all video elements and audio files
@@ -42,7 +42,7 @@ class Video_Editor:
     def write_to_file(self, out_file_name):
         if out_file_name[len(out_file_name)-4:len(out_file_name)] != ".mp4":   
             out_file_name += ".mp4"
-        self.video.write_videofile(out_file_name, preset='ultrafast', logger='bar')
+        self.video.write_videofile(out_file_name, threads=6, preset='ultrafast', logger='bar')
 
     
 
