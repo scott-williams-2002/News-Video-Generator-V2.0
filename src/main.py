@@ -1,6 +1,7 @@
 from image_filtering.Image_Filter import Image_Filter
 from script_generation.gpt_handler import *
 from web_scraping.article_contents import *
+from web_scraping.article_contents import get_article_publisher
 from web_scraping.embed import *
 from web_scraping.url_source import *
 from web_scraping.vector_db import *
@@ -16,7 +17,8 @@ def load_all_data(db,queries):
         article_urls = get_urls_from_google(query)
         # get text chunk list for each url
         for url in article_urls:
-            article_publisher = get_article_publisher(url)
+            print(f"loading data for: {url}")
+            article_publisher = get_article_publisher(url)  #either error or infinite loop around here so check later
             article_text_list = get_article_text(url)
             #add text chunks to vector database
             for article_text in article_text_list:
@@ -73,20 +75,27 @@ def main():
     #instantiate vector db
     db = Vector_DB()
     db.create_database()
-    #load_all_data(db,queries)
+    load_all_data(db,queries)
+    print("sleeping for 5 minutes...")
+    time.sleep(300)
+    
 
     #output has a dictionary of lists - one for text chunks, one for urls, and one for publisher
-    output_data_structure = db.make_query(embed_string("why is iran a threat"), 3)
+    output_data_structure = db.make_query(embed_string(research_question), 3)
     print("query to DB complete")
-    script_list = generate_article(output_data_structure['text'], "global conflict and destabilization")
+    script_list = generate_article(output_data_structure['text'], research_question=research_question)
     print("finished script")
     cleaned_output = concat_data(output_data_structure, script_list) #combines both outputs into one standard data structure
     print("cleaned the data")
-    cleaned_output = add_image_urls(cleaned_output,4) # 4 images per chunk
+    cleaned_output = add_image_urls(cleaned_output,6) # 4 images per chunk
 
     #adding speech files to output directory and saving their location in cleaned_output
     cleaned_output = generate_speech(cleaned_output)
     cleaned_output = validate_and_download_images(cleaned_output)
+
+    for sub_dict in cleaned_output:
+        print(sub_dict)
+        print("\n")
 
     print("Creating Video. Warning This will Take A While...")
     create_vid_input = str(input("Proceed? (Yy/Nn): "))
@@ -95,16 +104,16 @@ def main():
   
 
 
-    
-    
-    
-
     for sub_dict in cleaned_output:
         print(sub_dict)
         print("\n")
+    
+    
 
     
 
+    
+    
 
 
 
