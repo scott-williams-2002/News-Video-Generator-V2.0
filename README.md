@@ -10,15 +10,15 @@ World News Daily: https://www.instagram.com/world._news_daily/
 Tech News Daily: https://www.instagram.com/tech._news_daily/
 
 Improvements for V3:
-    - Add transitions and audio clips to image swaps \n
-    - Add background audio (news theme)\n
-    - Better prompt engineering to avoid redundant information being displayed\n
-    - Implement OpenAI Vision API to validate images\n
-    - Improve time complexity overall \n
-    - Host Wav2Lip Model on Google Cloud App Run and set up API (for AI "Anchor")\n
-    - Optimize GPT API Costs\n
-    - Investigate storing text embeddings locally to avoid Vector DB Costs in the future \n
-    - Use pandas DataFrame instead of generic list of dictionaries\n
+    - Add transitions and audio clips to image swaps__
+    - Add background audio (news theme)__
+    - Better prompt engineering to avoid redundant information being displayed__
+    - Implement OpenAI Vision API to validate images__
+    - Improve time complexity overall__
+    - Host Wav2Lip Model on Google Cloud App Run and set up API (for AI "Anchor")__
+    - Optimize GPT API Costs__
+    - Investigate storing text embeddings locally to avoid Vector DB Costs in the future__
+    - Use pandas DataFrame instead of generic list of dictionaries__
     
     
 
