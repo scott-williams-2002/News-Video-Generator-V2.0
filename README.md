@@ -18,7 +18,8 @@ Improvements for V3:
     - Host Wav2Lip Model on Google Cloud App Run and set up API (for AI "Anchor")__
     - Optimize GPT API Costs__
     - Investigate storing text embeddings locally to avoid Vector DB Costs in the future__
-    - Use pandas DataFrame instead of generic list of dictionaries__
+    - Use pandas DataFrame instead of generic list of dictionaries and save df as csv for reuse
+    - add greyscale checker for dimensionality issues in moviepy
     
     
 
