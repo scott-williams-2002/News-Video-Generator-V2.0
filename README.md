@@ -6,8 +6,9 @@ Check out some demos on my Instagram accounts:
 (Disclaimer - All of the opinions presented in these videos are based off of the source articles (and not my own) if an opion is presented.)
 
 In my 3rd Iteration, I intend on polishing many of the features utilized in this repository, and adding a realistic AI "Anchor", hopefully to capitalize on the novelty aspect of AI Avatars.
-World News Daily: https://www.instagram.com/world._news_daily/
-Tech News Daily: https://www.instagram.com/tech._news_daily/
+- World News Daily: https://www.instagram.com/world._news_daily/
+- Tech News Daily: https://www.instagram.com/tech._news_daily/
+
 
 Improvements for V3:
 - Add transitions and audio clips to image swaps
@@ -21,6 +22,7 @@ Improvements for V3:
 - Use pandas DataFrame instead of generic list of dictionaries and save df as csv for reuse
 - Add greyscale checker for dimensionality issues in moviepy
 - Add a cheaper model to classify non-news URLs. Should basically be free since the model has a cheaper token price and the input and output token count will be less than 10 (not including system prompt).
+- Get sentence by sentence text chunks
     
     
 
@@ -30,14 +32,4 @@ Improvements for V3:
 
 
 
-
-
-
-
-
-
-Get sentence by sentence text chunks
-
-
-
-#For Windows Users, install ImageMagick if not already installed to prevent issues with text
+NOTE: For Windows Users, install ImageMagick if not already installed to prevent issues with text
