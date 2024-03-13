@@ -9,17 +9,18 @@ In my 3rd Iteration, I intend on polishing many of the features utilized in this
 World News Daily: https://www.instagram.com/world._news_daily/
 Tech News Daily: https://www.instagram.com/tech._news_daily/
 
-Add transitions and audio clips to image swaps
-Add background audio (news theme)
-Better prompt engineering to avoid redundant information being displayed
-Implement OpenAI Vision API to validate images
-Improve time complexity overall
-Host Wav2Lip Model on Google Cloud App Run and set up API (for AI "Anchor")
-Optimize GPT API Costs
-Investigate storing text embeddings locally to avoid Vector DB Costs in the future
-Use pandas DataFrame instead of generic list of dictionaries and save df as csv for reuse
-Add greyscale checker for dimensionality issues in moviepy
-Add a cheaper model to classify non-news URLs. Should basically be free since the model has a cheaper token price and the input and output token count will be less than 10 (not including system prompt).
+Improvements for V3:
+- Add transitions and audio clips to image swaps
+- Add background audio (news theme)
+- Better prompt engineering to avoid redundant information being displayed
+- Implement OpenAI Vision API to validate images
+- Improve time complexity overall
+- Host Wav2Lip Model on Google Cloud App Run and set up API (for AI "Anchor")
+- Optimize GPT API Costs
+- Investigate storing text embeddings locally to avoid Vector DB Costs in the future
+- Use pandas DataFrame instead of generic list of dictionaries and save df as csv for reuse
+- Add greyscale checker for dimensionality issues in moviepy
+- Add a cheaper model to classify non-news URLs. Should basically be free since the model has a cheaper token price and the input and output token count will be less than 10 (not including system prompt).
     
     
 
